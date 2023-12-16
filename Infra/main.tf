@@ -1,8 +1,3 @@
-# resource "google_service_account" "account" {
-#   account_id   = "task5-Terraform"
-#   display_name = "Test Service Account"
-# }
-
 # Bucket to store cloud functions
 resource "google_storage_bucket" "bucket" {
     name = "cloud-function-bucket-by-anagha"
@@ -57,13 +52,9 @@ resource "google_cloudfunctions2_function" "getAllEmp" {
     max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 60
-    service_account_email = "task5-terraform@terraform-408108.iam.gserviceaccount.com"
+    service_account_email = var.service_account_email
   }
   
-}
-
-output "function_uri1" { 
-  value = google_cloudfunctions2_function.getAllEmp.service_config[0].uri
 }
 
 # resource "google_cloudfunctions2_function_iam_binding" "allow_unauthenticated1" {
@@ -110,7 +101,7 @@ resource "google_cloudfunctions2_function" "allEmpByID" {
     max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 60
-    service_account_email = "task5-terraform@terraform-408108.iam.gserviceaccount.com"
+    service_account_email = var.service_account_email
     
     
   }  
@@ -125,9 +116,7 @@ resource "google_cloudfunctions2_function_iam_member" "member" {
   member = "allUsers"
 }
 
-output "function_uri2" { 
-  value = google_cloudfunctions2_function.allEmpByID.service_config[0].uri
-}
+
 
 # cf3 
 resource "google_storage_bucket_object" "object3" {
@@ -165,15 +154,12 @@ resource "google_cloudfunctions2_function" "createEmp" {
     max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 60
-    service_account_email = "task5-terraform@terraform-408108.iam.gserviceaccount.com"
+    service_account_email = var.service_account_email
     
   }
   
 }
 
-output "function_uri3" { 
-  value = google_cloudfunctions2_function.createEmp.service_config[0].uri
-}
 
 
 # cf4
@@ -212,15 +198,12 @@ resource "google_cloudfunctions2_function" "updateEmp" {
     max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 60
-    service_account_email = "task5-terraform@terraform-408108.iam.gserviceaccount.com"
+    service_account_email = var.service_account_email
     
   }
   
 }
 
-output "function_uri4" { 
-  value = google_cloudfunctions2_function.updateEmp.service_config[0].uri
-}
 
 
 # cf5
@@ -259,13 +242,10 @@ resource "google_cloudfunctions2_function" "deleteEmp" {
     max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 60
-    service_account_email = "task5-terraform@terraform-408108.iam.gserviceaccount.com"
+    service_account_email = var.service_account_email
     
   }
   
 }
 
-output "function_uri5" { 
-  value = google_cloudfunctions2_function.deleteEmp.service_config[0].uri
-}
 

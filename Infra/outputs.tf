@@ -1,20 +1,20 @@
 
-output "function_uri1" { 
+output "GetAllEmployees" { 
   value = google_cloudfunctions2_function.getAllEmp.service_config[0].uri
 }
 
-output "function_uri2" { 
+output "GetAllEmployeesByID" { 
   value = google_cloudfunctions2_function.allEmpByID.service_config[0].uri
 }
 
-output "function_uri3" { 
+output "CreateEmployee" { 
   value = google_cloudfunctions2_function.createEmp.service_config[0].uri
 }
 
-output "function_uri4" { 
+output "UpdateEmployee" { 
   value = google_cloudfunctions2_function.updateEmp.service_config[0].uri
 }
 
-output "function_uri5" { 
+output "DeleteEmployee" { 
   value = google_cloudfunctions2_function.deleteEmp.service_config[0].uri
 }

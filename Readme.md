@@ -31,3 +31,45 @@ For the Key type field chose JSON. Put the downloaded file right were your Terra
 
 If you are using the gcs as the backend, you will need to give it the `Storage Admin` role for the `storage.buckets.create` permission.
 
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Anagha-coder/Terraform.git
+```
+
+Go to the project directory
+
+```bash
+  cd Infra
+```
+
+Initialize Terraform
+
+```bash
+  terraform init
+```
+
+Validate Terraform script
+
+```bash
+  terraform validate
+```
+
+Initialize the Plan. Check resources  
+
+```bash
+  terraform plan
+```
+
+Apply
+
+```bash
+  terraform apply
+```
+
+
+

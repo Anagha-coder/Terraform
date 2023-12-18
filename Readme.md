@@ -13,8 +13,8 @@ Continuous Integration (CI) and Continuous Deployment (CD) are practices in soft
    - Continuous Deployment (CD): Extends CI by automatically deploying code changes to production or staging environments after passing the CI pipeline. This enables faster and more reliable releases.
 ## Modules
 
-- [Cloud Storage](https://github.com/tasdikrahman/terraform-gcp-examples/tree/master/gcs-bucket/)
-- [Cloud Functions](https://github.com/tasdikrahman/terraform-gcp-examples/tree/master/single-and-multi-node-compute-vm)
+- [Cloud Storage]
+- [Cloud Functions]
 
 
 ### Setup

@@ -13,8 +13,8 @@ Continuous Integration (CI) and Continuous Deployment (CD) are practices in soft
    - Continuous Deployment (CD): Extends CI by automatically deploying code changes to production or staging environments after passing the CI pipeline. This enables faster and more reliable releases.
 ## Modules
 
-- [Cloud Storage]
-- [Cloud Functions]
+- Cloud Storage
+- Cloud Functions
 
 
 ### Setup

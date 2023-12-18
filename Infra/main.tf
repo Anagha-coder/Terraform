@@ -22,7 +22,7 @@ resource "google_storage_bucket_object" "swagdocs" {
 data "archive_file" "dist_zip" {
   type        = "zip"
   output_path = "../output/dist.zip"
-  source_dir  = "../handlers/dist"
+  source_dir  = "../handlers/swaggerDoc"
 }
 
 # firestore database
@@ -45,7 +45,7 @@ resource "google_storage_bucket_object" "object" {
 data "archive_file" "getAllEmp_zip" {
   type        = "zip"
   output_path = "../output/getAllEmp.zip"
-  source_dir  = "../handlers/function1"
+  source_dir  = "../handlers/GetAllEmployees"
 }
 
 # module "getAll" {
@@ -101,7 +101,7 @@ resource "google_storage_bucket_object" "object2" {
 data "archive_file" "allEmpByID_zip" {
   type        = "zip"
   output_path = "../output/allEmpByID.zip"
-  source_dir  = "../handlers/function2"
+  source_dir  = "../handlers/GetEmployeeByID"
 }
 
 resource "google_cloudfunctions2_function" "allEmpByID" {
@@ -135,7 +135,7 @@ resource "google_cloudfunctions2_function" "allEmpByID" {
 }
 
 resource "google_cloud_run_service_iam_member" "member2" {
-  location = google_cloudfunctions2_function.getAllEmp.location
+  location = google_cloudfunctions2_function.allEmpByID.location
   service  = "allemployeesbyid"
   role     = "roles/run.invoker"
   member   = "allUsers"
@@ -152,7 +152,7 @@ resource "google_storage_bucket_object" "object3" {
 data "archive_file" "createEmp_zip" {
   type        = "zip"
   output_path = "../output/createEmp.zip"
-  source_dir  = "../handlers/function3"
+  source_dir  = "../handlers/CreateEmployee"
 }
 
 resource "google_cloudfunctions2_function" "createEmp" {
@@ -185,7 +185,7 @@ resource "google_cloudfunctions2_function" "createEmp" {
 }
 
 resource "google_cloud_run_service_iam_member" "member3" {
-  location = google_cloudfunctions2_function.getAllEmp.location
+  location = google_cloudfunctions2_function.createEmp.location
   service  = "createemployee"
   role     = "roles/run.invoker"
   member   = "allUsers"
@@ -203,7 +203,7 @@ resource "google_storage_bucket_object" "object4" {
 data "archive_file" "updateEmp_zip" {
   type        = "zip"
   output_path = "../output/updateEmp.zip"
-  source_dir  = "../handlers/function4"
+  source_dir  = "../handlers/UpdateEmployee"
 }
 
 resource "google_cloudfunctions2_function" "updateEmp" {
@@ -236,7 +236,7 @@ resource "google_cloudfunctions2_function" "updateEmp" {
 }
 
 resource "google_cloud_run_service_iam_member" "member4" {
-  location = google_cloudfunctions2_function.getAllEmp.location
+  location = google_cloudfunctions2_function.updateEmp.location
   service  = "updateemployee"
   role     = "roles/run.invoker"
   member   = "allUsers"
@@ -254,7 +254,7 @@ resource "google_storage_bucket_object" "object5" {
 data "archive_file" "deleteEmp_zip" {
   type        = "zip"
   output_path = "../output/deleteEmp.zip"
-  source_dir  = "../handlers/function5"
+  source_dir  = "../handlers/DeleteEmp"
 }
 
 resource "google_cloudfunctions2_function" "deleteEmp" {
@@ -287,7 +287,7 @@ resource "google_cloudfunctions2_function" "deleteEmp" {
 }
 
 resource "google_cloud_run_service_iam_member" "member5" {
-  location = google_cloudfunctions2_function.getAllEmp.location
+  location = google_cloudfunctions2_function.deleteEmp.location
   service  = "deleteemployee"
   role     = "roles/run.invoker"
   member   = "allUsers"

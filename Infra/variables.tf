@@ -13,3 +13,4 @@ variable "gcp_region" {
 variable "service_account_email" {
   
 }
+

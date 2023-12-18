@@ -7,13 +7,13 @@ resource "google_storage_bucket" "bucket" {
 }
 
 # firestore database
-resource "google_firestore_database" "database" {
-  project                 = "terraform-408108"
-  name                    = "(default)"
-  location_id             = "nam5"
-  type                    = "FIRESTORE_NATIVE"
+# resource "google_firestore_database" "database" {
+#   project                 = "terraform-408108"
+#   name                    = "(default)"
+#   location_id             = "nam5"
+#   type                    = "FIRESTORE_NATIVE"
   
-}
+# }
 
 # Cloud functions
 
@@ -28,6 +28,14 @@ data "archive_file" "getAllEmp_zip" {
   output_path = "../output/getAllEmp.zip"
   source_dir  = "../handlers/function1"
 }
+
+# module "getAll" {
+#   source = "./cloudFunction"
+#   funcName="getAllEmployees"
+#   gcp_region = var.gcp_region
+#   entry_point= "GetAllEmployees"
+  
+# }
 
 resource "google_cloudfunctions2_function" "getAllEmp" {
   name = "GetAllEmployees"
@@ -57,12 +65,12 @@ resource "google_cloudfunctions2_function" "getAllEmp" {
   
 }
 
-# resource "google_cloudfunctions2_function_iam_binding" "allow_unauthenticated1" {
-#   cloud_function = google_cloudfunctions2_function.getAllEmp.name
-#   location    = google_cloudfunctions2_function.getAllEmp.location
-#   role        = "roles/cloudfunctions.invoker"
-#   members     = ["allUsers"]
-# }
+resource "google_cloud_run_service_iam_member" "member" {
+  location = google_cloudfunctions2_function.getAllEmp.location
+  service  = "getallemployees"
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
 
 # cf2
 resource "google_storage_bucket_object" "object2" {
@@ -107,15 +115,12 @@ resource "google_cloudfunctions2_function" "allEmpByID" {
   }  
 }
 
-
-resource "google_cloudfunctions2_function_iam_member" "member" {
-  project = var.gcp_project
-  cloud_function = google_cloudfunctions2_function.allEmpByID.name
-  location = google_cloudfunctions2_function.allEmpByID.location
-  role = "roles/cloudfunctions.invoker"
-  member = "allUsers"
+resource "google_cloud_run_service_iam_member" "member2" {
+  location = google_cloudfunctions2_function.getAllEmp.location
+  service  = "allemployeesbyid"
+  role     = "roles/run.invoker"
+  member   = "allUsers"
 }
-
 
 
 # cf3 
